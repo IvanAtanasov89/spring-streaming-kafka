@@ -1,0 +1,14 @@
+spring:
+  cloud.stream:
+    kafka.streams.binder.applicationId: testing
+    bindings.process-in-0.destination: things
+  kafka:
+    bootstrap-servers:
+      - ${BOOTSTRAP_SERVERS}
+    properties:
+      ssl.endpoint.identification.algorithm: https
+      sasl.mechanism: PLAIN
+      request.timeout.ms: 20000
+      retry.backoff.ms: 500
+      sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username="${API_KEY}" password="${API_SECRET}";
+      security.protocol: SASL_SSL
